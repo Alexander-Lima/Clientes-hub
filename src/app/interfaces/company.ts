@@ -16,4 +16,5 @@ export interface Company {
     responsavelPrefeitura: string | null;
     lastUpdatePrefeitura: string | null;
     errorMessage: string | null;
+    show: boolean;
 }

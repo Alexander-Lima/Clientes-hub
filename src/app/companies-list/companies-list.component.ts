@@ -10,26 +10,29 @@ import { Company } from '../interfaces/company';
 })
 export class CompaniesListComponent implements OnInit{
   companies: Company[] = [];
-  currentFilter: Company[] = [];
   
   constructor(private companyService: CompaniesService) {}
-
+  
   ngOnInit(): void {
     this.loadCompanies();
   } 
-
+  
   loadCompanies() {
     this.companyService.getCompanies().subscribe((companies: Company[]) => {
+      companies.forEach(company => company.show = true)
       this.companies = companies;
     })
   }
-
-  clickHandlerNull() {
-    this.currentFilter = this.companies.filter(company => company.razaoSocial == null)
+  filterChange(change: HTMLInputElement) {
+    if(change.value == null && change.value == "") return;
+    for(let company of this.companies) {
+      company.show = false;
+      for(let value of Object.values(company)) {
+        if(value != null && value.toString().includes(change.value.toUpperCase())) {
+          company.show = true;
+          break;
+        }
+      }
+    }
   }
-
-  clickHandlerOk() {
-    this.currentFilter = this.companies.filter(company => company.razaoSocial)
-  }
-
 }

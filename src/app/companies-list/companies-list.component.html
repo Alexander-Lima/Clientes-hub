@@ -1,8 +1,25 @@
-<div *ngIf="currentFilter[0]?.codigo; else elseBlock">
+<div>
+    <label>Filter</label>
+    <input type="text" #filter (change)="filterChange(filter)">
+</div>
+<div *ngIf="companies[0]?.codigo; else elseBlock">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Razão Social</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let company of companies">
+                <tr *ngIf="company.show == true">
+                    <td>{{company.id}}</td>
+                    <td>{{company.razaoSocial}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
     <ul >
-        <li *ngFor="let company of currentFilter">
-            {{company.id + "---" + company.razaoSocial}}
-        </li>
     </ul>
 </div>
 <ng-template #elseBlock>
@@ -10,5 +27,3 @@
         <p>Nenhuma empresa encontrada!</p>
     </div>
 </ng-template>
-<button (click)="clickHandlerNull()">Null</button>
-<button (click)="clickHandlerOk()">Ok</button>
