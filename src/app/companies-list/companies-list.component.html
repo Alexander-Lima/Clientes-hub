@@ -1,0 +1,14 @@
+<div *ngIf="currentFilter[0]?.codigo; else elseBlock">
+    <ul >
+        <li *ngFor="let company of currentFilter">
+            {{company.id + "---" + company.razaoSocial}}
+        </li>
+    </ul>
+</div>
+<ng-template #elseBlock>
+    <div>
+        <p>Nenhuma empresa encontrada!</p>
+    </div>
+</ng-template>
+<button (click)="clickHandlerNull()">Null</button>
+<button (click)="clickHandlerOk()">Ok</button>
