@@ -1,0 +1,14 @@
+<div class="filter-container">
+    <div class="filter">
+        <label>PESQUISAR</label>
+        <input 
+            type="text" 
+            #filter (input)="resetFilter(filter)"
+            (keypress)="onKeyPress($event, filter)"
+            placeholder="digite o termo de pesquisa"
+        />
+        <button type="button" class="filter-button" (click)="applyFilter(filter)">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </div>
+</div>

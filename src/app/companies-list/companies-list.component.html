@@ -1,29 +1,101 @@
-<div>
-    <label>Filter</label>
-    <input type="text" #filter (change)="filterChange(filter)">
-</div>
-<div *ngIf="companies[0]?.codigo; else elseBlock">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Razão Social</th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let company of companies">
-                <tr *ngIf="company.show == true">
-                    <td>{{company.id}}</td>
-                    <td>{{company.razaoSocial}}</td>
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
-    <ul >
-    </ul>
-</div>
-<ng-template #elseBlock>
-    <div>
-        <p>Nenhuma empresa encontrada!</p>
+<main>
+   <app-filter [companies]="companies" (hasFilterResults)="hasResults=$event"/>
+    <div class="card-container" *ngIf="hasResults; else elseBlock">
+        <ng-container *ngFor="let company of companies">
+            <div 
+                *ngIf="company.show"
+                class="source-tag" 
+                [ngStyle]="company.dataSource == 'Sintegra' ?
+                    {'background-color': '#aef203'} : {'background-color': '#FF8F00'}">
+                <p>{{company.dataSource | uppercase}}</p>
+            </div>
+            <div class="card" *ngIf="company.show">
+                <fieldset>
+                    <legend>Empresa</legend>
+                    <div>
+                        <label>
+                            <strong>CNPJ/CPF: </strong>
+                            {{company.codigo}}
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <strong>NOME: </strong>
+                            {{company.razaoSocial}}
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <strong>ATIVIDADE PRINCIPAL: </strong>
+                            {{company.atividadePrincipal}}
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <strong>ENDEREÇO: </strong>
+                            {{company.endereco}}
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <strong>REGIME: </strong>{{company.regimeApuracao}}
+                        </label>
+                    </div>
+                    <div *ngIf="company.razaoSocial && company.lasUpdateClientes">
+                        <p class="last-update">Atualizado em: {{company.lasUpdateClientes | date:"dd/MM/yyyy"}}</p>
+                    </div>
+                    <div *ngIf="company.errorMessage" class="error">
+                        <p>FALHA AO BUSCAR DADOS</p>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Estado</legend>
+                    <div>
+                        <label>
+                            <strong>INSCRIÇÃO: </strong>
+                            {{company.inscricaoEstadual ? company.inscricaoEstadual : "NÃO POSSUI"}}
+                        </label>
+                        <label>
+                            <strong>RESPONSÁVEL: </strong>
+                            {{(company.responsavelSefaz ? company.responsavelSefaz : "NÃO ENCONTRADO") | uppercase}}
+                        </label>
+                        <label>
+                            <strong>SITUAÇÃO: </strong>
+                            {{company.situacao}}
+                        </label>
+                    </div>
+                    <div *ngIf="company.inscricaoEstadual && company.lastUpdateSefaz">
+                        <p class="last-update">Atualizado em: {{company.lastUpdateSefaz | date:"dd/MM/yyyy"}}</p>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Município</legend>
+                    <div>
+                        <label>
+                            <strong>INSCRIÇÃO: </strong>
+                            {{company.inscricaoMunicipal ? company.inscricaoMunicipal : "NÃO POSSUI"}}
+                        </label>
+                        <label>
+                            <strong>RESPONSÁVEL: </strong>
+                            {{(company.responsavelPrefeitura ? company.responsavelPrefeitura : "NÃO ENCONTRADO") | uppercase}}
+                        </label>
+                        <label>
+                            <strong>CCP: </strong>
+                            {{company.ccp ? company.ccp : "NÃO POSSUI"}}
+                        </label>
+                    </div>
+                    <div *ngIf="company.inscricaoMunicipal && company.lastUpdatePrefeitura">
+                        <p class="last-update">Atualizado em: {{company.lastUpdatePrefeitura | date:"dd/MM/yyyy"}}</p>
+                    </div>
+                </fieldset>
+            </div>
+        </ng-container>
     </div>
-</ng-template>
+    <ng-template #elseBlock>
+        <div class="no-results">
+            <strong>
+                <p>Nenhum cliente encontrado!</p>
+            </strong>
+        </div>
+    </ng-template>
+</main>

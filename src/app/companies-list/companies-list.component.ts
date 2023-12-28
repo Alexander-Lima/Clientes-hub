@@ -6,10 +6,11 @@ import { Company } from '../interfaces/company';
 @Component({
   selector: 'app-companies-list',
   templateUrl: './companies-list.component.html',
-  styleUrls: ['./companies-list.component.css']
+  styleUrls: ['./companies-list.component.css'],
 })
 export class CompaniesListComponent implements OnInit{
-  companies: Company[] = [];
+  companies!: Company[];
+  hasResults: boolean = false;
   
   constructor(private companyService: CompaniesService) {}
   
@@ -19,20 +20,11 @@ export class CompaniesListComponent implements OnInit{
   
   loadCompanies() {
     this.companyService.getCompanies().subscribe((companies: Company[]) => {
-      companies.forEach(company => company.show = true)
-      this.companies = companies;
-    })
-  }
-  filterChange(change: HTMLInputElement) {
-    if(change.value == null && change.value == "") return;
-    for(let company of this.companies) {
-      company.show = false;
-      for(let value of Object.values(company)) {
-        if(value != null && value.toString().includes(change.value.toUpperCase())) {
-          company.show = true;
-          break;
-        }
+      if(companies[0]?.codigo) {
+        companies.forEach(company => company.show = true)
+        this.companies = companies;
+        this.hasResults = true;
       }
-    }
+    })
   }
 }

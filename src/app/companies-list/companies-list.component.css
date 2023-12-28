@@ -1,3 +1,81 @@
-tr {
+main {
+    height: 81vh;
+}
+
+.card-container {
+    overflow-y: scroll;
+    height: 100%;
+    margin-top: -1em;
+}
+
+.card {
+    padding: 0.5em 1em;
+    margin: 0.5em 0.5em;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 15px;
+    gap: 0.8em
+}
+
+.card > fieldset > div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card > fieldset > div > label {
+    width: 100%;
+    margin: 0.5em 1em;
+}
+
+fieldset {
+    border: 1px solid #D3D3D3;
+    border-radius: 15px;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+
+legend {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 0.9em;
+    color: #0437F2;
+}
+
+.no-results {
+    padding-top: 3em;
+    font-size: 1.2em;
     text-align: center;
+}
+
+.last-update{
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.source-tag {
+    border: 2px solid transparent;
+    width: 10%;
+    margin-left: 1em;
+    text-align: center;
+    color: #fff;
+    font-family: math;
+    position: relative;
+    top: 1.3em;
+    left: -0.5em;
+    font-style: italic;
+    font-size: 1em;
+    font-weight: bolder;
+    border-bottom-right-radius: 15px;
+}
+
+.error {
+    background-color: red;
+    width: 100%;
+    font-weight: bolder;
+    color: white;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    justify-content: center;
 }
