@@ -1,14 +1,29 @@
 <div class="filter-container">
     <div class="filter">
         <label>PESQUISAR</label>
-        <input 
-            type="text" 
-            #filter (input)="resetFilter(filter)"
-            (keypress)="onKeyPress($event, filter)"
-            placeholder="digite o termo de pesquisa"
-        />
-        <button type="button" class="filter-button" (click)="applyFilter(filter)">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
+        <select [(ngModel)]="selectedOption">
+           <ng-container *ngFor="let key of companyOptions">
+                <option [value]="key" [disabled]="searchEmpty && key == 'TODOS'">{{key}}</option>
+           </ng-container>
+        </select>
+        <div class="search-bar">
+            <input 
+                type="text" 
+                #filter
+                (keypress)="onKeyPress($event, filter)"
+                placeholder="digite o termo de pesquisa"
+                [disabled]="searchEmpty"
+            />
+            <button type="button" class="filter-button" (click)="applyFilter(filter)">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <div class="empty-checkbox">
+            <input type="checkbox" (change)="checkboxOnChange(filter)">
+            <label> Vazio</label>
+        </div>
+        <div class="results">
+            <p>{{filterCount > 0 ? filterCount : ""}} {{getResultCountText()}}</p>
+        </div>
     </div>
 </div>

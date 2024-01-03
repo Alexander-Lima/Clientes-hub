@@ -10,7 +10,8 @@ import { Company } from '../interfaces/company';
 })
 export class CompaniesListComponent implements OnInit{
   companies!: Company[];
-  hasResults: boolean = false;
+  hasResults: boolean = true;
+  filterCount!: number;
   
   constructor(private companyService: CompaniesService) {}
   
@@ -23,7 +24,7 @@ export class CompaniesListComponent implements OnInit{
       if(companies[0]?.codigo) {
         companies.forEach(company => company.show = true)
         this.companies = companies;
-        this.hasResults = true;
+        this.filterCount = this.companies.length;
       }
     })
   }

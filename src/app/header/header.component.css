@@ -3,11 +3,20 @@
     grid-template-columns: 15vw 84vw;
     height: 100%;
     font-family: pro;
+    color: #fff;
 }
 
-.logo{
-    height: 8vh;
-    justify-self: center;
+.header > div {
+    display: flex;
+}
+
+.logo {
+    height: 9vh;
+    padding: 0.2em 1em;
+    background-color: #fff;
+    border-radius: 15px;
+    width: 80%;
+    margin-left: 0.5em;
     align-self: center;
 }
 

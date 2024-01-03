@@ -1,5 +1,9 @@
 <main>
-   <app-filter [companies]="companies" (hasFilterResults)="hasResults=$event"/>
+   <app-filter 
+        [companies]="companies" 
+        (hasFilterResults)="hasResults=$event"
+        [filterCount]="filterCount"
+    />
     <div class="card-container" *ngIf="hasResults; else elseBlock">
         <ng-container *ngFor="let company of companies">
             <div 
@@ -7,81 +11,79 @@
                 class="source-tag" 
                 [ngStyle]="company.dataSource == 'Sintegra' ?
                     {'background-color': '#aef203'} : {'background-color': '#FF8F00'}">
-                <p>{{company.dataSource | uppercase}}</p>
+                <p>{{company.dataSource | isblank}}</p>
             </div>
             <div class="card" *ngIf="company.show">
-                <fieldset>
+                <fieldset [ngClass]="company.errorMessage ? 'error' : ''">
                     <legend>Empresa</legend>
                     <div>
                         <label>
                             <strong>CNPJ/CPF: </strong>
-                            {{company.codigo}}
+                            {{company.codigo | formatcode | isblank}}
                         </label>
                     </div>
                     <div>
                         <label>
                             <strong>NOME: </strong>
-                            {{company.razaoSocial}}
+                            {{company.razaoSocial | isblank}}
                         </label>
                     </div>
                     <div>
                         <label>
                             <strong>ATIVIDADE PRINCIPAL: </strong>
-                            {{company.atividadePrincipal}}
+                            {{company.atividadePrincipal | isblank}}
                         </label>
                     </div>
                     <div>
                         <label>
                             <strong>ENDEREÇO: </strong>
-                            {{company.endereco}}
+                            {{company.endereco | isblank}}
                         </label>
                     </div>
                     <div>
                         <label>
-                            <strong>REGIME: </strong>{{company.regimeApuracao}}
+                            <strong>REGIME: </strong>
+                            {{company.regimeApuracao | isblank}}
                         </label>
                     </div>
-                    <div *ngIf="company.razaoSocial && company.lasUpdateClientes">
-                        <p class="last-update">Atualizado em: {{company.lasUpdateClientes | date:"dd/MM/yyyy"}}</p>
-                    </div>
-                    <div *ngIf="company.errorMessage" class="error">
-                        <p>FALHA AO BUSCAR DADOS</p>
+                    <div *ngIf="company.razaoSocial && company.lastUpdateClientes">
+                        <p class="last-update">Atualizado em: {{company.lastUpdateClientes | date:"dd/MM/yyyy"}}</p>
                     </div>
                 </fieldset>
-                <fieldset>
+                <fieldset [ngClass]="company.errorMessage ? 'error' : ''">
                     <legend>Estado</legend>
                     <div>
                         <label>
                             <strong>INSCRIÇÃO: </strong>
-                            {{company.inscricaoEstadual ? company.inscricaoEstadual : "NÃO POSSUI"}}
+                            {{company.inscricaoEstadual | isblank}}
                         </label>
                         <label>
                             <strong>RESPONSÁVEL: </strong>
-                            {{(company.responsavelSefaz ? company.responsavelSefaz : "NÃO ENCONTRADO") | uppercase}}
+                            {{company.responsavelSefaz | isblank}}
                         </label>
                         <label>
                             <strong>SITUAÇÃO: </strong>
-                            {{company.situacao}}
+                            {{company.situacao | isblank}}
                         </label>
                     </div>
                     <div *ngIf="company.inscricaoEstadual && company.lastUpdateSefaz">
                         <p class="last-update">Atualizado em: {{company.lastUpdateSefaz | date:"dd/MM/yyyy"}}</p>
                     </div>
                 </fieldset>
-                <fieldset>
+                <fieldset [ngClass]="company.errorMessage ? 'error' : ''">
                     <legend>Município</legend>
                     <div>
                         <label>
                             <strong>INSCRIÇÃO: </strong>
-                            {{company.inscricaoMunicipal ? company.inscricaoMunicipal : "NÃO POSSUI"}}
+                            {{company.inscricaoMunicipal | isblank}}
                         </label>
                         <label>
                             <strong>RESPONSÁVEL: </strong>
-                            {{(company.responsavelPrefeitura ? company.responsavelPrefeitura : "NÃO ENCONTRADO") | uppercase}}
+                            {{company.responsavelPrefeitura | isblank}}
                         </label>
                         <label>
                             <strong>CCP: </strong>
-                            {{company.ccp ? company.ccp : "NÃO POSSUI"}}
+                            {{company.ccp?.toString()| isblank}}
                         </label>
                     </div>
                     <div *ngIf="company.inscricaoMunicipal && company.lastUpdatePrefeitura">

@@ -7,7 +7,7 @@ export interface Company {
     regimeApuracao: string | null;
     situacao: string | null;
     dataSource: string | null;
-    lasUpdateClientes: string | null;
+    lastUpdateClientes: string | null;
     inscricaoEstadual: string | null;
     responsavelSefaz: string | null;
     lastUpdateSefaz: string | null;

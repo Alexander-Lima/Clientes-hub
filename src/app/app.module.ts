@@ -9,7 +9,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { FilterComponent } from './filter/filter.component'
-import { UpperCasePipe, DatePipe } from '@angular/common';
+import { UpperCasePipe } from '@angular/common';
+import { IsblankPipe } from './pipes/isblank.pipe';
+import { FormatcodePipe } from './pipes/formatcode.pipe'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,13 +21,16 @@ import { UpperCasePipe, DatePipe } from '@angular/common';
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    FilterComponent
+    FilterComponent,
+    IsblankPipe,
+    FormatcodePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    UpperCasePipe
+    UpperCasePipe,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

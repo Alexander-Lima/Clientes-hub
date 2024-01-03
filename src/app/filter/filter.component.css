@@ -3,45 +3,67 @@
     background-color: #fff;
     display: flex;
     justify-content: center;
+    z-index: 9999;
+    position: relative;
 }
 
 .filter {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     padding: 1em 0;
-    margin-top: 0.5em;
-    margin-left: 0.4em;
-    margin-right: 1.3em;
-    height: 1em;
+    height: 3.5em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.2em;
-    z-index: 1000;
-    border-bottom: 1px solid #D3D3D3;
-    width: 100%;
+    width: 95%;
     background-color: #fff;
+    border-bottom: 1px solid #D3D3D3;
+    border-top: 1px solid #D3D3D3;
+    gap: 1em;
 }
 
-.filter > input {
-    margin-left: 1%;
+.search-bar {
+    display: flex;
+    align-items: center;
     width: 35%;
+}
+
+.filter > div > input {
     font-size: 0.8em;
     padding-left: 1em;
     height: 1.5em;
+    width: 100%;
 }
 
-.filter > button{
+.filter > div > button {
     width: 3em;
     height: 1.7em;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
-    border: 1px solid black;
+    border: 1px solid #000000;
 }
 
-.filter > button:hover {
+.filter > div > button:hover {
     cursor: pointer;
 }
 
 .fa-solid {
     margin-left: 2%;
+}
+
+.filter > select {
+    width: max-content;
+    height: 1.7em;
+}
+
+.results {
+    font-weight: bolder;
+    width: 25%;
+    text-align: center;
+}
+
+.empty-checkbox {
+    width: 5%;
+    display: flex;
+    gap: 0.5em;
 }

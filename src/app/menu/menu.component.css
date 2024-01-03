@@ -1,5 +1,8 @@
 .menu-container {
     height: 100%;
+    background-color: #1434A4;
+    color: #fff;
+    border-top-right-radius: 15px;
 }
 
 .menu > ul {
