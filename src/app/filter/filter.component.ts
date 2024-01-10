@@ -21,12 +21,11 @@ export class FilterComponent {
     
 
   applyFilter(input: HTMLInputElement) {
-    const SEARCH_TERM = input.value;
+    const SEARCH_TERM = this.formatSearchTerm(input.value);
     if(!SEARCH_TERM && !this.searchEmpty) {
       return this.resetFilter();
     }
     const OPTION = this.getCompanyProperty();
-    this.formatInput(input);
  
     for(let company of this.companies) {
       company.show = 
@@ -52,9 +51,8 @@ export class FilterComponent {
     }
   }
 
-  formatInput(input: HTMLInputElement) {
-    input.value = input.value
-                    .replaceAll(".", "")
+  formatSearchTerm(searchTerm: string): string {
+    return searchTerm.replaceAll(".", "")
                     .replaceAll("/", "")
                     .replaceAll("-", "");
   }

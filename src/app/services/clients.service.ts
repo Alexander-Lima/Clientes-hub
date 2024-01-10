@@ -7,7 +7,7 @@ import { Observable, ObservableInput, catchError, retry } from 'rxjs';
   providedIn: 'root'
 })
 export class CompaniesService {
-  private readonly URL: string = "http://192.168.1.203:8080/api/companies";
+  private readonly URL: string = "http://192.168.1.203/hub-clientes/get-clients";
 
   constructor(private httpClient: HttpClient) {}
 

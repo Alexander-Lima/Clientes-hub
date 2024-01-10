@@ -46,11 +46,17 @@
                             {{company.regimeApuracao | isblank}}
                         </label>
                     </div>
+                    <div>
+                        <label>
+                            <strong>SITUAÇÃO: </strong>
+                            {{company.situacao | isblank}}
+                        </label>
+                    </div>
                     <div *ngIf="company.razaoSocial && company.lastUpdateClientes">
                         <p class="last-update">Atualizado em: {{company.lastUpdateClientes | date:"dd/MM/yyyy"}}</p>
                     </div>
                 </fieldset>
-                <fieldset [ngClass]="company.errorMessage ? 'error' : ''">
+                <fieldset id="estado" [ngClass]="company.errorMessage ? 'error' : ''">
                     <legend>Estado</legend>
                     <div>
                         <label>
@@ -61,16 +67,12 @@
                             <strong>RESPONSÁVEL: </strong>
                             {{company.responsavelSefaz | isblank}}
                         </label>
-                        <label>
-                            <strong>SITUAÇÃO: </strong>
-                            {{company.situacao | isblank}}
-                        </label>
                     </div>
                     <div *ngIf="company.inscricaoEstadual && company.lastUpdateSefaz">
                         <p class="last-update">Atualizado em: {{company.lastUpdateSefaz | date:"dd/MM/yyyy"}}</p>
                     </div>
                 </fieldset>
-                <fieldset [ngClass]="company.errorMessage ? 'error' : ''">
+                <fieldset id="municipio" [ngClass]="company.errorMessage ? 'error' : ''">
                     <legend>Município</legend>
                     <div>
                         <label>
@@ -86,7 +88,7 @@
                             {{company.ccp?.toString()| isblank}}
                         </label>
                     </div>
-                    <div *ngIf="company.inscricaoMunicipal && company.lastUpdatePrefeitura">
+                    <div *ngIf="(company.inscricaoMunicipal || company.lastUpdatePrefeitura) && company.lastUpdatePrefeitura">
                         <p class="last-update">Atualizado em: {{company.lastUpdatePrefeitura | date:"dd/MM/yyyy"}}</p>
                     </div>
                 </fieldset>

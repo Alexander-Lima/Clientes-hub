@@ -15,7 +15,6 @@ main {
     flex-direction: column;
     border: 2px solid black;
     border-radius: 15px;
-    gap: 0.8em
 }
 
 .card > fieldset > div{
@@ -74,3 +73,18 @@ legend {
     background-color: #ff00002a;
     border-color: red;
 }
+
+#estado, #municipio {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#estado > div, #municipio > div {
+    width: 100%;
+    /* text-align: center; */
+}
+
+#estado > div > label, #municipio > div > label   {
+    width: 30%;
+}
+
