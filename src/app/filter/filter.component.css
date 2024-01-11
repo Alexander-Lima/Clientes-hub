@@ -19,7 +19,7 @@
     background-color: #fff;
     border-bottom: 1px solid #D3D3D3;
     border-top: 1px solid #D3D3D3;
-    gap: 1em;
+    gap: 0.5em;
 }
 
 .search-bar {
@@ -66,4 +66,25 @@
     width: 5%;
     display: flex;
     gap: 0.5em;
+}
+
+.fa-file-excel{
+    color: #32CD32;
+    font-size: 1.5em;
+}
+
+.excel-icon-container > p {
+    font-size: 0.7em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+.excel-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.excel-icon-container:hover {
+    cursor: pointer;
 }

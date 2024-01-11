@@ -27,7 +27,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/json-as-xlsx/dist/index.js"
+            ]
           },
           "configurations": {
             "production": {

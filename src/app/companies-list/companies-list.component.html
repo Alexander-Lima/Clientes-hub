@@ -4,7 +4,7 @@
         (hasFilterResults)="hasResults=$event"
         [filterCount]="filterCount"
     />
-    <div class="card-container" *ngIf="hasResults; else elseBlock">
+    <div class="card-container" *ngIf="companies && hasResults; else elseBlock">
         <ng-container *ngFor="let company of companies">
             <div 
                 *ngIf="company.show"
@@ -98,7 +98,8 @@
     <ng-template #elseBlock>
         <div class="no-results">
             <strong>
-                <p>Nenhum cliente encontrado!</p>
+                <p *ngIf="companies">Nenhum cliente encontrado!</p>
+                <p *ngIf="!companies">O servidor não retornou nenhum dado!</p>
             </strong>
         </div>
     </ng-template>

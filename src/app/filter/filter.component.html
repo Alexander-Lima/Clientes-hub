@@ -1,7 +1,7 @@
 <div class="filter-container">
     <div class="filter">
         <label>PESQUISAR</label>
-        <select [(ngModel)]="selectedOption">
+        <select [(ngModel)]="selectedOption" *ngIf="companies">
            <ng-container *ngFor="let key of companyOptions">
                 <option [value]="key" [disabled]="searchEmpty && key == 'TODOS'">{{key}}</option>
            </ng-container>
@@ -24,6 +24,10 @@
         </div>
         <div class="results">
             <p>{{filterCount > 0 ? filterCount : ""}} {{filterCount > 0 ? getResultCountText() : ""}}</p>
+        </div>
+        <div *ngIf="companies" class="excel-icon-container" (click)="createExcelFile()">
+            <i class="fa-solid fa-file-excel"></i>
+            <p>EXPORTAR TODOS</p>
         </div>
     </div>
 </div>
