@@ -1,16 +1,23 @@
 <div class="menu-container">
     <aside class="menu">
         <ul>
-            <li>
-                <i class="fa-solid fa-eye"></i>
-                VISÃO GERAL
+            <li [ngClass]="currentUrl == '/general-vision' ? 'selected-menu' : ''">
+                <a routerLink="/general-vision">
+                    <i class="fa-solid fa-eye"></i>
+                    VISÃO GERAL
+                </a>
             </li>
-            <li><i class="fa-solid fa-book"></i>
-                CADASTRO
+            <li  [ngClass]="currentUrl == '/register' ? 'selected-menu' : ''">
+                <a routerLink="/register">
+                    <i class="fa-solid fa-book"></i>
+                    CADASTRO
+                </a>
             </li>
-            <li>
-                <i class="fa-solid fa-chart-pie"></i>
-                GRÁFICOS
+            <li [ngClass]="currentUrl == '/charts' ? 'selected-menu' : ''">
+                <a routerLink="/charts" >
+                    <i class="fa-solid fa-chart-pie"></i>
+                    GRÁFICOS
+                </a>
             </li>
         </ul>
     </aside>
