@@ -1,0 +1,85 @@
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 95%;
+    gap: 1em;
+    margin-top: 1em;
+    align-items: center;
+}
+
+main > div {
+    width: 90%;
+    height: 65%;
+    border-top: 1px solid #D3D3D3;
+    display: flex;
+    justify-content: center;
+}
+
+main > div > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
+    margin-top: 1em;
+    padding: 2em;
+    border: 2px solid;
+    width: 60%;
+ 
+}
+
+main > div > div > button {
+    background-color: #36454F;
+    color: #ffff;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    font-family: auto;
+    font-weight: bolder;
+    font-size: 1em;
+    width: 10em;
+    font-family: 'Lucida Sans Unicode';
+}
+
+main > div > div > button:hover { 
+    cursor: pointer;
+    background-color: #FFBF00;
+}
+
+main > div > div > h2 {
+    margin-top: 0.5em;
+}
+
+main > div > div >  input {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.error, .success {
+    border-radius: 15px;
+    color: #ffff;
+    font-size: 1.2em;
+    padding: 0.5em 1em;
+}
+
+.error {
+    background: #ff0000b3;
+}
+.success {
+    background: #008000; 
+}
+
+.error > ul > li {
+    list-style-type: disc;
+    margin-left: 1.5em;
+}
+
+.validation {
+    position: relative;
+    top: -1em;
+}
+
+.fa-spin {
+    font-size: 3em;
+}
+
+

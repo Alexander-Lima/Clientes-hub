@@ -7,7 +7,7 @@ import { Observable, ObservableInput, catchError, retry } from 'rxjs';
   providedIn: 'root'
 })
 export class CompaniesService {
-  private readonly URL: string = "http://192.168.1.203/hub-clientes/get-clients";
+  private readonly URL: string = 'http://192.168.1.203/hub-clientes/get-clients';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -19,6 +19,6 @@ export class CompaniesService {
   getCompanies(): Observable<Company[]>{
     return this.httpClient
               .get<Company[]>(this.URL)
-              .pipe(retry(2), catchError(this.handleError));
+              .pipe(retry(1), catchError(this.handleError));
   }
 }

@@ -1,1 +1,23 @@
-<p>register works!</p>
+<main>
+    <div>
+        <div>
+            <h2>Digite o CPF/CNPJ do cliente que deseja cadastrar:</h2>
+            <input #inputField type="text">
+            <button type="button" (click)="handleClick($event, inputField)">SALVAR</button>
+            <div *ngIf="validationError" class="error validation">
+                <p>O texto deve conter:</p>
+                <ul>
+                    <li>Mínimio 1 e máximo 14 caracteres</li>
+                    <li>Apenas números</li>
+                </ul>
+            </div>
+            <div *ngIf="postError" class="error">
+                <p>Falha no cadastro, verifique se o cliente já existe. </p>
+            </div>
+            <div *ngIf="success" class="success">
+                <p>Cliente cadastrado com suscesso!</p>
+            </div>
+            <i *ngIf="loading" class="fas fa-sync fa-spin"></i>
+        </div>
+    </div>
+</main>

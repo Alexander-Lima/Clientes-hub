@@ -28,7 +28,10 @@
               "src/styles.css"
             ],
             "scripts": [
-              "./node_modules/json-as-xlsx/dist/index.js"
+             
+            ],
+            "allowedCommonJsDependencies": [
+              "json-as-xlsx"
             ]
           },
           "configurations": {
