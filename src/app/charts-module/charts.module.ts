@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartsComponent } from './charts/charts.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -9,7 +10,8 @@ import { ChartsComponent } from './charts/charts.component';
     ChartsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgChartsModule
   ],
   exports: [ChartsComponent]
 })

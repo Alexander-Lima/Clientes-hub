@@ -1,1 +1,23 @@
-<p>charts works!</p>
+<div class="container">
+  <div class="pie-container">
+    <h2>Regime de Apuração</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsRegime"
+      [labels]="pieChartLabelsRegime"
+      [options]="pieChartOptions"
+      class="pie">
+    </canvas>
+  </div>
+    <div class="pie-container">
+    <h2>Situação</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsSituacao"
+      [labels]="pieChartLabelsSituacao"
+      [options]="pieChartOptions"
+      [plugins]="pieChartPluginsSituacao"
+      class="pie">
+    </canvas>
+  </div>
+</div>

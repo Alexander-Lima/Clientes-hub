@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GeneralVisionModule } from './general-vision-module/general-vision.module';
 import { ChartsModule } from './charts-module/charts.module';
 import { RegisterModule } from './register-module/register.module';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RegisterModule } from './register-module/register.module';
     GeneralVisionModule,
     HttpClientModule,
     ChartsModule,
-    RegisterModule
+    RegisterModule,
+    NgChartsModule
   ],
   bootstrap: [AppComponent]
 })
