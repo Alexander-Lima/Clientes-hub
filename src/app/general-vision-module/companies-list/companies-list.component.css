@@ -87,3 +87,12 @@ legend {
     width: 30%;
 }
 
+.fa-trash {
+    font-size: 1.5em;
+    padding-right: 0.5em;
+}
+
+.fa-trash:hover {
+    cursor: pointer;
+}
+

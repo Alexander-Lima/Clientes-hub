@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
-import { RegisterServiceService } from 'src/app/general-vision-module/services/register-service.service';
+import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
+import { RegisterService } from 'src/app/general-vision-module/services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -14,28 +15,30 @@ export class RegisterComponent {
   public errorMessage = '';
   public success: boolean = false;
   public loading: boolean = false;
+  private hideWarnigOnTime = this.hideWarningsTimer();
 
-  constructor(private registerService: RegisterServiceService) {}
+  constructor(private registerService: RegisterService) {}
 
   handleClick(event: MouseEvent, input: HTMLInputElement) {
     const isValid = this.checkValidity(input.value);
+    this.hideAllWarnings();
     this.validationError = !isValid;
     if(!isValid) {
-      this.hideWarnings(); 
+      this.hideWarnigOnTime();
       return;
     } 
     this.loading = true;
     this.registerService.recordClient(input.value).subscribe(
       {
-        error: (err) => { 
+        error: (err) => {
+          this.hideAllWarnings();
           this.postError = true;
-          this.loading = false;
-          this.hideWarnings();
+          this.hideWarnigOnTime();
         },
-        complete: () => { 
+        complete: () => {
+          this.hideAllWarnings(); 
           this.success = true;
-          this.loading = false;
-          this.hideWarnings();
+          this.hideWarnigOnTime();
         }
     });
   }
@@ -45,9 +48,17 @@ export class RegisterComponent {
     return regex.test(text);
   }
 
-  private hideWarnings() {
-    setTimeout(() => {
-      this.postError = this.success = this.validationError = false;
-    }, 4000)
+  private hideWarningsTimer() {
+    let timer: NodeJS.Timeout;
+    return () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        this.hideAllWarnings();
+      }, 5000);
+    }
+  }
+
+  private hideAllWarnings() {
+    this.postError = this.success = this.loading = this.validationError = false;
   }
 }

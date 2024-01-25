@@ -51,6 +51,7 @@
                             <strong>SITUAÇÃO: </strong>
                             {{company.situacao | isblank}}
                         </label>
+                        <i class="fa-solid fa-trash" (click)="deleteClient(company.codigo)"></i>
                     </div>
                     <div *ngIf="company.razaoSocial && company.lastUpdateClientes">
                         <p class="last-update">Atualizado em: {{company.lastUpdateClientes | date:"dd/MM/yyyy"}}</p>

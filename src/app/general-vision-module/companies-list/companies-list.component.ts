@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompaniesService } from '../services/clients.service';
 import { Company } from '../interfaces/company';
+import { RegisterService } from '../services/register.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class CompaniesListComponent implements OnInit{
   hasResults: boolean = true;
   filterCount!: number;
   
-  constructor(private companyService: CompaniesService) {}
+  constructor(private companyService: CompaniesService, private registerService: RegisterService) {}
   
   ngOnInit(): void {
     this.loadCompanies();
@@ -27,5 +28,16 @@ export class CompaniesListComponent implements OnInit{
         this.filterCount = this.companies.length;
       }
     })
+  }
+
+  deleteClient(clientCode: string|null) {
+    if(clientCode == null) return;
+    this.registerService.deleteClient(clientCode).subscribe(
+      {
+        error: (err) => console.log(err),
+        complete: () => {
+          this.companies = this.companies.filter((c) => c.codigo != clientCode);
+        }
+      });
   }
 }
