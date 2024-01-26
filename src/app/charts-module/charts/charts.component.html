@@ -1,23 +1,68 @@
-<div class="container">
-  <div class="pie-container">
-    <h2>Regime de Apuração</h2>
+<main class="container" *ngIf="showCharts; else elseBlock">
+  <div  class="pie-container">
+    <h2>Empresas p/ Regime de Apuração</h2>
     <canvas baseChart
       [type]="'pie'"
       [datasets]="pieChartDatasetsRegime"
       [labels]="pieChartLabelsRegime"
       [options]="pieChartOptions"
+      [title]="'Regime'"
       class="pie">
     </canvas>
   </div>
-    <div class="pie-container">
-    <h2>Situação</h2>
+  <div class="pie-container">
+    <h2>Empresas p/ Situação</h2>
     <canvas baseChart
       [type]="'pie'"
       [datasets]="pieChartDatasetsSituacao"
       [labels]="pieChartLabelsSituacao"
       [options]="pieChartOptions"
-      [plugins]="pieChartPluginsSituacao"
       class="pie">
     </canvas>
   </div>
-</div>
+  <div class="pie-container">
+    <h2>Empresas p/ Resp. Prefeitura (Catalão)</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsResponsaveisPrefeitura"
+      [labels]="pieChartLabelsResponsaveisPrefeitura"
+      [options]="pieChartOptions"
+      class="pie">
+    </canvas>
+  </div>
+  <div class="pie-container">
+    <h2>Empresas p/ Responsável SEFAZ (GO)</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsResponsaveisEstado"
+      [labels]="pieChartLabelsResponsaveisEstado"
+      [options]="pieChartOptions"
+      class="pie">
+    </canvas>
+  </div>
+  <div class="pie-container">
+    <h2>Status das empresas com I.E.</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsVinculosInscricoesSefaz"
+      [labels]="pieChartLabelsVinculosInscricoesSefaz"
+      [options]="pieChartOptions"
+      class="pie">
+    </canvas>
+  </div>
+  <div class="pie-container">
+    <h2>Status das empresas com I.M.</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsVinculosInscricoesPrefeitura"
+      [labels]="pieChartLabelsVinculosInscricoesPrefeitura"
+      [options]="pieChartOptions"
+      class="pie">
+    </canvas>
+  </div>
+</main>
+<ng-template #elseBlock>
+  <main class="error">
+    <h2>Sem dados para exibir, o servidor não retornou nenhum resultado.</h2>
+  </main>
+</ng-template>
