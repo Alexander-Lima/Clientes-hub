@@ -1,6 +1,16 @@
 <main class="container" *ngIf="showCharts; else elseBlock">
+  <div class="pie-container">
+    <h2>Situação Geral</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsSituacao"
+      [labels]="pieChartLabelsSituacao"
+      [options]="pieChartOptions"
+      class="pie">
+    </canvas>
+  </div>
   <div  class="pie-container">
-    <h2>Empresas p/ Regime de Apuração</h2>
+    <h2>Regimes de Apuração dos Clientes Ativos</h2>
     <canvas baseChart
       [type]="'pie'"
       [datasets]="pieChartDatasetsRegime"
@@ -11,17 +21,7 @@
     </canvas>
   </div>
   <div class="pie-container">
-    <h2>Empresas p/ Situação</h2>
-    <canvas baseChart
-      [type]="'pie'"
-      [datasets]="pieChartDatasetsSituacao"
-      [labels]="pieChartLabelsSituacao"
-      [options]="pieChartOptions"
-      class="pie">
-    </canvas>
-  </div>
-  <div class="pie-container">
-    <h2>Empresas p/ Resp. Prefeitura (Catalão)</h2>
+    <h2>Clientes Ativos com Inscrição Municipal <br> por Responsável (Catalão)</h2>
     <canvas baseChart
       [type]="'pie'"
       [datasets]="pieChartDatasetsResponsaveisPrefeitura"
@@ -31,31 +31,11 @@
     </canvas>
   </div>
   <div class="pie-container">
-    <h2>Empresas p/ Responsável SEFAZ (GO)</h2>
+    <h2>Clientes Ativos com Inscrição Estadual  <br> por Responsável (GO)</h2>
     <canvas baseChart
       [type]="'pie'"
       [datasets]="pieChartDatasetsResponsaveisEstado"
       [labels]="pieChartLabelsResponsaveisEstado"
-      [options]="pieChartOptions"
-      class="pie">
-    </canvas>
-  </div>
-  <div class="pie-container">
-    <h2>Status das empresas com I.E.</h2>
-    <canvas baseChart
-      [type]="'pie'"
-      [datasets]="pieChartDatasetsVinculosInscricoesSefaz"
-      [labels]="pieChartLabelsVinculosInscricoesSefaz"
-      [options]="pieChartOptions"
-      class="pie">
-    </canvas>
-  </div>
-  <div class="pie-container">
-    <h2>Status das empresas com I.M.</h2>
-    <canvas baseChart
-      [type]="'pie'"
-      [datasets]="pieChartDatasetsVinculosInscricoesPrefeitura"
-      [labels]="pieChartLabelsVinculosInscricoesPrefeitura"
       [options]="pieChartOptions"
       class="pie">
     </canvas>

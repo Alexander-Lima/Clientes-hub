@@ -126,7 +126,6 @@ export class FilterComponent {
     const FORMATTED_DATE = 
       `${DATE_ARRAY[0].substring(8, 10)}/${DATE_ARRAY[0].substring(5, 7)}/${DATE_ARRAY[0].substring(0, 4)}`;
     const FORMATTED_HOURS = DATE_ARRAY[1];
-    console.log( `${FORMATTED_DATE} às ${FORMATTED_HOURS}`)
     return `${FORMATTED_DATE} às ${FORMATTED_HOURS}`
   }
 
@@ -151,7 +150,6 @@ export class FilterComponent {
           { label: "RESP. SEFAZ", value: "responsavelSefaz" },
           { label: "ATUALIZAÇÃO (SEFAZ)", value: (row: any) => this.formatDateAndHours(row.lastUpdateClientes)},
           { label: "ERRO", value: "errorMessage" }
-       
         ],
         content: <IContent[]>[]
       }

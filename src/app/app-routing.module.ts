@@ -8,7 +8,8 @@ import { RegisterComponent } from './register-module/register/register.component
 const routes: Routes = [
   {path: 'general-vision', component: CompaniesListComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'charts', component: ChartsComponent}
+  {path: 'charts', component: ChartsComponent},
+  {path: '', redirectTo: '/general-vision', pathMatch: 'full'}
 ];
 
 @NgModule({
