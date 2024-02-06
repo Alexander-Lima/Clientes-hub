@@ -95,6 +95,15 @@
                 </fieldset>
             </div>
         </ng-container>
+        <div class="overlay" *ngIf="showPopup">
+            <div class="confirm-popup">
+                <p>Deseja realmente excluir?</p>
+                <div>
+                    <button class="button-yes" type="button" (click)="handleClickYes()">SIM</button>
+                    <button class="button-no" type="button" (click)="handleClickNo()">NÃO</button>
+                </div>
+            </div>
+        </div>
     </div>
     <ng-template #elseBlock>
         <div class="no-results">

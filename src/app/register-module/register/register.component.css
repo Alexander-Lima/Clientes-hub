@@ -10,7 +10,7 @@ main {
 
 main > div {
     width: 90%;
-    height: 65%;
+    height: 70%;
     border-top: 1px solid #D3D3D3;
     display: flex;
     justify-content: center;
@@ -25,7 +25,6 @@ main > div > div {
     padding: 2em;
     border: 2px solid;
     width: 60%;
- 
 }
 
 main > div > div > button {
@@ -80,6 +79,18 @@ main > div > div >  input {
 
 .fa-spin {
     font-size: 3em;
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.loading > p  {
+    font-size: 1em;
+    font-family:  'Lucida Sans Unicode';
 }
 
 

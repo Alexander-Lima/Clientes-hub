@@ -1,7 +1,7 @@
 <div class="menu-container">
     <aside class="menu">
         <ul>
-            <li [ngClass]="currentUrl == '/general-vision' ? 'selected-menu' : ''">
+            <li [ngClass]="currentUrl == '/general-vision' || currentUrl == '/' ? 'selected-menu' : ''">
                 <a routerLink="/general-vision">
                     <i class="fa-solid fa-eye"></i>
                     VISÃO GERAL

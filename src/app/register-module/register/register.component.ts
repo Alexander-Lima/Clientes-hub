@@ -10,12 +10,12 @@ import { RegisterService } from 'src/app/general-vision-module/services/register
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  private hideWarnigOnTime = this.hideWarningsTimer();
   public validationError: boolean = false;
   public postError: boolean = false;
   public errorMessage = '';
   public success: boolean = false;
   public loading: boolean = false;
-  private hideWarnigOnTime = this.hideWarningsTimer();
 
   constructor(private registerService: RegisterService) {}
 

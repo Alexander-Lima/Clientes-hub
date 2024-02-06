@@ -6,6 +6,8 @@ main {
     overflow-y: scroll;
     height: 100%;
     margin-top: -1em;
+    display: flex;
+    flex-direction: column;
 }
 
 .card {
@@ -96,3 +98,57 @@ legend {
     cursor: pointer;
 }
 
+.confirm-popup {
+    border: 2px #000000 solid;
+    padding: 1em 1em;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffff;
+    width: 16em;
+    height: 6em;
+    align-self: center;
+}
+
+.confirm-popup > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.confirm-popup > p {
+    font-size: 1.2em;
+    opacity: 1;
+}
+
+.button-yes, .button-no {
+    width: 5em;
+    color: #ffff;
+    border: 2px transparent;
+    border-radius: 15px;
+    padding: 0.2em 1em;
+    margin-top: 1em;
+    font-weight: bolder;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.button-yes {
+    background-color: #008000;
+}
+
+.button-no {
+    background-color: #ff0000;
+}
+
+.overlay {
+    background-color: #a09f9fa3;
+    position: absolute;
+    height: 80%;
+    width: 87%;
+    display: flex;
+    justify-content: center;
+}
