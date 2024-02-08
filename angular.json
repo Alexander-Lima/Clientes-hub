@@ -32,7 +32,8 @@
             ],
             "allowedCommonJsDependencies": [
               "json-as-xlsx"
-            ]
+            ],
+            "baseHref": ""
           },
           "configurations": {
             "production": {

@@ -14,6 +14,10 @@ export interface Company {
     lastUpdatePrefeitura: string | null;
     inscricaoEstadual: string | null;
     responsavelSefaz: string | null;
+    uf: string | null;
+    municipio: string | null;
+    porte: string | null;
+    naturezaJuridica: string | null;
     lastUpdateSefaz: string | null;
     errorMessage: string | null;
     show: boolean;

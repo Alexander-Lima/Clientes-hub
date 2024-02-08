@@ -7,11 +7,9 @@
     <div class="card-container" *ngIf="companies && hasResults; else elseBlock">
         <ng-container *ngFor="let company of companies">
             <div 
-                *ngIf="company.show"
-                class="source-tag" 
-                [ngStyle]="company.dataSource == 'Sintegra' ?
-                    {'background-color': '#aef203'} : {'background-color': '#FF8F00'}">
-                <p>{{company.dataSource | isblank}}</p>
+                *ngIf="company.show && company.naturezaJuridica"
+                class="tag">
+                <p>{{company.naturezaJuridica | isblank}}</p>
             </div>
             <div class="card" *ngIf="company.show">
                 <fieldset [ngClass]="company.errorMessage ? 'error' : ''">
@@ -38,6 +36,12 @@
                         <label>
                             <strong>ENDEREÇO: </strong>
                             {{company.endereco | isblank}}
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <strong>PORTE: </strong>
+                            {{company.porte | isblank}}
                         </label>
                     </div>
                     <div>

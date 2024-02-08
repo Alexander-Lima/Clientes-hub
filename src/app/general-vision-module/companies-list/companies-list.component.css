@@ -55,9 +55,9 @@ legend {
     font-weight: bolder;
 }
 
-.source-tag {
+.tag {
     border: 2px solid transparent;
-    width: 10%;
+    width: 40%;
     margin-left: 1em;
     text-align: center;
     color: #fff;
@@ -67,8 +67,8 @@ legend {
     left: -0.5em;
     font-style: italic;
     font-size: 1em;
-    font-weight: bolder;
     border-bottom-right-radius: 15px;
+    background: #228B22;
 }
 
 .error {

@@ -15,8 +15,8 @@ export class FilterComponent {
   searchEmpty: boolean = false;
   selectedOption = 'TODOS';
   companyOptions: string[] = 
-    ['TODOS', 'CNPJ/CPF', 'NOME', 'ATIVIDADE PRINCIPAL', 'ENDEREÇO', 'REGIME',
-    'ESTADO - RESPONSÁVEL', 'ESTADO - INSCRIÇÃO', 'SITUAÇÃO',
+    ['TODOS', 'CNPJ/CPF', 'NOME', 'ATIVIDADE PRINCIPAL', 'NATUREZA JURÍDICA','PORTE', 'ENDEREÇO', 'REGIME',
+    'SITUAÇÃO', 'ESTADO - RESPONSÁVEL', 'ESTADO - INSCRIÇÃO', 
     'MUNICÍPIO - INSCRIÇÃO', 'MUNICÍPIO - RESPONSÁVEL', 'MUNICÍPIO - CCP'];
     
 
@@ -62,9 +62,11 @@ export class FilterComponent {
       'TODOS' : null,
       'CNPJ/CPF': 'codigo',
       'NOME' : 'razaoSocial',
-      'ENDEREÇO' : 'endereco',
       'ATIVIDADE PRINCIPAL' : 'atividadePrincipal',
+      'ENDEREÇO' : 'endereco',
+      'PORTE' : 'porte',
       'REGIME' : 'regimeApuracao',
+      'NATUREZA JURÍDICA' : 'naturezaJuridica',
       'SITUAÇÃO' : 'situacao',
       'ESTADO - INSCRIÇÃO' : 'inscricaoEstadual',
       'ESTADO - RESPONSÁVEL' : 'responsavelSefaz',

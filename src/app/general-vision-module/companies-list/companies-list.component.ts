@@ -25,8 +25,11 @@ export class CompaniesListComponent implements OnInit{
   loadCompanies() {
     this.companyService.getCompanies().subscribe((companies: Company[]) => {
       if(companies[0]?.codigo) {
-        companies.forEach(company => company.show = true)
-        this.companies = companies.filter(c => c.codigo ? c.codigo <= '10' : false);
+        companies.forEach(company => {
+          company.endereco = `${company.endereco} - ${company.municipio}(${company.uf})`
+          company.show = true
+        })
+        this.companies = companies;
         this.filterCount = this.companies.length;
       }
     })
