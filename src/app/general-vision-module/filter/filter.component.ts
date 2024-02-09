@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Company } from '../interfaces/company';
 import xlsx, { IContent } from 'json-as-xlsx';
+import { ExcelService } from '../services/excel.service';
 
 @Component({
   selector: 'app-filter',
@@ -15,10 +16,11 @@ export class FilterComponent {
   searchEmpty: boolean = false;
   selectedOption = 'TODOS';
   companyOptions: string[] = 
-    ['TODOS', 'CNPJ/CPF', 'NOME', 'ATIVIDADE PRINCIPAL', 'NATUREZA JURÍDICA','PORTE', 'ENDEREÇO', 'REGIME',
-    'SITUAÇÃO', 'ESTADO - RESPONSÁVEL', 'ESTADO - INSCRIÇÃO', 
-    'MUNICÍPIO - INSCRIÇÃO', 'MUNICÍPIO - RESPONSÁVEL', 'MUNICÍPIO - CCP'];
-    
+  ['TODOS', 'CNPJ/CPF', 'NOME', 'ATIVIDADE PRINCIPAL', 'NATUREZA JURÍDICA','PORTE', 'ENDEREÇO', 'REGIME',
+  'SITUAÇÃO', 'ESTADO - RESPONSÁVEL', 'ESTADO - INSCRIÇÃO', 
+  'MUNICÍPIO - INSCRIÇÃO', 'MUNICÍPIO - RESPONSÁVEL', 'MUNICÍPIO - CCP'];
+  
+  constructor(private excelService: ExcelService) {}
 
   applyFilter(input: HTMLInputElement) {
     const SEARCH_TERM = this.formatSearchTerm(input.value);
@@ -121,54 +123,7 @@ export class FilterComponent {
     input.value = "";
   }
 
-  formatDateAndHours(date: string | null): string {
-    if(!date) return "";
-    const DATE_SUBSTRING = date.toString().substring(0, 19);
-    const DATE_ARRAY = DATE_SUBSTRING.split(" ");
-    const FORMATTED_DATE = 
-      `${DATE_ARRAY[0].substring(8, 10)}/${DATE_ARRAY[0].substring(5, 7)}/${DATE_ARRAY[0].substring(0, 4)}`;
-    const FORMATTED_HOURS = DATE_ARRAY[1];
-    return `${FORMATTED_DATE} às ${FORMATTED_HOURS}`
-  }
-
-  createExcelFile() {
-    const data = [
-      {
-        sheet: "Clientes",
-        columns: [
-          { label: "CPF/CNPJ", value: "codigo" },
-          { label: "NOME", value: "razaoSocial" },
-          { label: "ENDEREÇO", value: "endereco" },
-          { label: "ATIV. PRINCIPAL", value: "atividadePrincipal" },
-          { label: "REGIME", value: "regimeApuracao" },
-          { label: "SITUAÇÃO", value: "situacao" },
-          { label: "FONTE", value: "dataSource" },
-          { label: "ATUALIZAÇÃO (CLIENTE)", value: (row: any) => this.formatDateAndHours(row.lastUpdateClientes)},
-          { label: "INSC. MUNICIPAL", value: "inscricaoMunicipal" },
-          { label: "CCP", value: "ccp" },
-          { label: "RESP. PREFEITURA", value: "responsavelPrefeitura" },
-          { label: "ATUALIZAÇÃO (PREFEITURA)", value: (row: any) => this.formatDateAndHours(row.lastUpdateClientes)},
-          { label: "INSC. ESTADUAL", value: "inscricaoEstadual" },
-          { label: "RESP. SEFAZ", value: "responsavelSefaz" },
-          { label: "ATUALIZAÇÃO (SEFAZ)", value: (row: any) => this.formatDateAndHours(row.lastUpdateClientes)},
-          { label: "ERRO", value: "errorMessage" }
-        ],
-        content: <IContent[]>[]
-      }
-    ]
- 
-    const settings = {
-      fileName: "Dados clientes",
-      writeMode: "writeFile"
-    }
-    
-    for(let company of this.companies) {
-      let row: IContent = {};
-      for(let key of Object.keys(company)) {
-        row[key] = company[key as keyof Company];
-      }
-      data[0].content.push(row);
-    }
-    xlsx(data, settings);
+  generateExcelFile() {
+    this.excelService.createExcelFile(this.companies);
   }
 }

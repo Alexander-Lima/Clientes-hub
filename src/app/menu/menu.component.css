@@ -10,13 +10,14 @@
 }
 
 .menu > ul > li {
-    padding: 0.5em 10%;
+    padding: 0.5em 0;
     cursor: pointer;
     padding-left: 1.5em;
 }
 
 .menu > ul > li > a {
     color: #ffff;
+    font-size: 0.9em;
 }
 
 .menu > ul > li:hover {

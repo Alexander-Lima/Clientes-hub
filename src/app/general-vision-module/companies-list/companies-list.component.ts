@@ -26,7 +26,7 @@ export class CompaniesListComponent implements OnInit{
     this.companyService.getCompanies().subscribe((companies: Company[]) => {
       if(companies[0]?.codigo) {
         companies.forEach(company => {
-          company.endereco = `${company.endereco} - ${company.municipio}(${company.uf})`
+          company.endereco = `${company.endereco} - ${company.municipio} (${company.uf})`
           company.show = true
         })
         this.companies = companies;

@@ -1,5 +1,5 @@
 <main class="container" *ngIf="showCharts; else elseBlock">
-  <div class="pie-container">
+  <div class="chart-container">
     <h2>Situação Geral</h2>
     <canvas baseChart
       [type]="'pie'"
@@ -9,7 +9,7 @@
       class="pie">
     </canvas>
   </div>
-  <div  class="pie-container">
+  <div  class="chart-container">
     <h2>Regimes de Apuração dos Clientes Ativos</h2>
     <canvas baseChart
       [type]="'pie'"
@@ -20,7 +20,7 @@
       class="pie">
     </canvas>
   </div>
-  <div class="pie-container">
+  <div class="chart-container">
     <h2>Clientes Ativos com Inscrição Municipal <br> por Responsável (Catalão)</h2>
     <canvas baseChart
       [type]="'pie'"
@@ -30,12 +30,39 @@
       class="pie">
     </canvas>
   </div>
-  <div class="pie-container">
+  <div class="chart-container">
     <h2>Clientes Ativos com Inscrição Estadual  <br> por Responsável (GO)</h2>
     <canvas baseChart
       [type]="'pie'"
       [datasets]="pieChartDatasetsResponsaveisEstado"
       [labels]="pieChartLabelsResponsaveisEstado"
+      [options]="pieChartOptions"
+      class="pie">
+    </canvas>
+  </div>
+  <div class="chart-container">
+    <h2>Clientes Ativos por Estado</h2>
+    <div class="table-scroll">
+      <table>
+        <tr>
+          <th>UF</th>
+          <th>QUANTIDADE</th>
+        </tr>
+        <ng-container *ngFor="let entry of dataSetEstados.entries()">
+          <tr>
+            <td>{{entry[0]}}</td>
+            <td>{{entry[1]}}</td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </div>
+  <div class="chart-container">
+    <h2>Clientes Ativos por Porte</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsPorte"
+      [labels]="pieChartLabelsPorte"
       [options]="pieChartOptions"
       class="pie">
     </canvas>

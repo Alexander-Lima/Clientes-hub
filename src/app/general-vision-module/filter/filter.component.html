@@ -25,7 +25,7 @@
         <div class="results">
             <p>{{filterCount > 0 ? filterCount : ""}} {{filterCount > 0 ? getResultCountText() : ""}}</p>
         </div>
-        <div *ngIf="companies" class="excel-icon-container" (click)="createExcelFile()">
+        <div *ngIf="companies" class="excel-icon-container" (click)="generateExcelFile()">
             <i class="fa-solid fa-file-excel"></i>
             <p>EXPORTAR TODOS</p>
         </div>

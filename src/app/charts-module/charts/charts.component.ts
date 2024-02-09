@@ -12,10 +12,11 @@ import { Colors } from 'src/app/enums/Colors';
 })
 export class ChartsComponent implements OnInit{
   constructor(private companyService: CompaniesService) {}
-  private colorsRegime: string[] = [Colors.GREY, Colors.BLUE]
+  private colorsSituacao: string[] = [Colors.BLUE, Colors.BLACK, Colors.GREY, Colors.YELLOW, Colors.RED]
+  private colorsRegime: string[] = [ Colors.GREEN, Colors.YELLOW, Colors.BLUE]
   private colorsResponsaveisPrefeitura: string[] = [Colors.GREY, Colors.BLUE, Colors.ORANGE]
   private colorsResponsaveisEstado: string[] = [Colors.BLUE, Colors.GREY, Colors.ORANGE, Colors.YELLOW]
-  private colorsSituacao: string[] = [Colors.GREEN, Colors.BLACK, Colors.YELLOW, Colors.GREY, Colors.RED]
+  private colorsPorte: string[] = [Colors.BLUE, Colors.GREEN, Colors.GREY]
   public showCharts = false;
   public pieChartOptions: ChartOptions<'pie'> = {
     plugins: {
@@ -44,6 +45,13 @@ export class ChartsComponent implements OnInit{
   public pieChartLabelsResponsaveisEstado: string[] = [];
   public pieChartDatasetsResponsaveisEstado = 
                           <ChartDataset<'pie'>[]>[{ data: <number[]>[], backgroundColor: this.colorsResponsaveisEstado }];
+
+  public pieChartLabelsPorte: string[] = [];
+  public pieChartDatasetsPorte = 
+                          <ChartDataset<'pie'>[]>[{ data: <number[]>[], backgroundColor: this.colorsPorte }];
+
+  public dataSetEstados!: Map<string, number>;
+
   ngOnInit(): void {
     this.loadCompanies();
   }
@@ -61,6 +69,9 @@ export class ChartsComponent implements OnInit{
     const data: Map<string, Map<string, number>> = this.getDataMap(companies);
 
     for(let entry of data.entries()) {
+      if(entry[0] == "ESTADOS") {
+        this.dataSetEstados = entry[1];
+      }
       for(let innerEntry of entry[1]) {
         if(entry[0] == "REGIME") {
           this.pieChartLabelsRegime.push(innerEntry[0]);
@@ -68,12 +79,15 @@ export class ChartsComponent implements OnInit{
         } else if(entry[0] == "SITUACAO") {
         this.pieChartLabelsSituacao.push(innerEntry[0]);
           this.pieChartDatasetsSituacao[0].data.push(innerEntry[1]);
-        } else if(entry[0] == "PREFEITURA") {
+        } else if(entry[0] == "RESP PREFEITURA") {
           this.pieChartLabelsResponsaveisPrefeitura.push(innerEntry[0]);
           this.pieChartDatasetsResponsaveisPrefeitura[0].data.push(innerEntry[1]);
-        } else if(entry[0] == "ESTADO") {
+        } else if(entry[0] == "RESP ESTADO") {
           this.pieChartLabelsResponsaveisEstado.push(innerEntry[0]);
           this.pieChartDatasetsResponsaveisEstado[0].data.push(innerEntry[1]);
+        } else if(entry[0] == "PORTE") {
+          this.pieChartLabelsPorte.push(innerEntry[0]);
+          this.pieChartDatasetsPorte[0].data.push(innerEntry[1]);
         }
       }
     }
@@ -84,8 +98,10 @@ export class ChartsComponent implements OnInit{
     const data = new Map<string, Map<string, number>>();
     data.set("REGIME", new Map<string, number>());
     data.set("SITUACAO", new Map<string, number>());
-    data.set("PREFEITURA", new Map<string, number>());
-    data.set("ESTADO", new Map<string, number>());
+    data.set("RESP PREFEITURA", new Map<string, number>());
+    data.set("RESP ESTADO", new Map<string, number>());
+    data.set("ESTADOS", new Map<string, number>());
+    data.set("PORTE", new Map<string, number>());
 
     for(let company of companies) {
       populateMapByChartName( 
@@ -99,13 +115,21 @@ export class ChartsComponent implements OnInit{
       populateMapByChartName(
             { filter: company.situacao == 'ATIVA' && !!company.inscricaoMunicipal }, 
             company.responsavelPrefeitura, 
-            "PREFEITURA", 
+            "RESP PREFEITURA", 
             "Sem responsável");
       populateMapByChartName(
             { filter: company.situacao == 'ATIVA' && !!company.inscricaoEstadual }, 
             company.responsavelSefaz,
-            "ESTADO",
+            "RESP ESTADO",
             "Sem responsável");
+      populateMapByChartName(
+            { filter: company.situacao == 'ATIVA' }, 
+            company.uf,
+            "ESTADOS");
+      populateMapByChartName(
+          { filter: company.situacao == 'ATIVA' }, 
+          company.porte,
+          "PORTE");
     }
     return data;
 
