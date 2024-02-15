@@ -1,7 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
-import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 import { RegisterService } from 'src/app/general-vision-module/services/register.service';
 
 @Component({
@@ -10,10 +7,8 @@ import { RegisterService } from 'src/app/general-vision-module/services/register
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  private hideWarnigOnTime = this.hideWarningsTimer();
-  public validationError: boolean = false;
+  private hideWarningsOnTime = this.hideWarningsTimer();
   public postError: boolean = false;
-  public errorMessage = '';
   public success: boolean = false;
   public loading: boolean = false;
 
@@ -22,23 +17,22 @@ export class RegisterComponent {
   handleClick(event: MouseEvent, input: HTMLInputElement) {
     const isValid = this.checkValidity(input.value);
     this.hideAllWarnings();
-    this.validationError = !isValid;
     if(!isValid) {
-      this.hideWarnigOnTime();
+      this.hideWarningsOnTime();
       return;
     } 
     this.loading = true;
     this.registerService.recordClient(input.value).subscribe(
       {
-        error: (err) => {
+        error: () => {
           this.hideAllWarnings();
           this.postError = true;
-          this.hideWarnigOnTime();
+          this.hideWarningsOnTime();
         },
         complete: () => {
-          this.hideAllWarnings(); 
+          this.hideAllWarnings();
           this.success = true;
-          this.hideWarnigOnTime();
+          this.hideWarningsOnTime();
         }
     });
   }
@@ -59,6 +53,6 @@ export class RegisterComponent {
   }
 
   private hideAllWarnings() {
-    this.postError = this.success = this.loading = this.validationError = false;
+    this.postError = this.success = this.loading = false;
   }
 }

@@ -2,18 +2,19 @@ main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 95%;
+    height: 98%;
     gap: 1em;
     margin-top: 1em;
     align-items: center;
 }
 
 main > div {
-    width: 90%;
-    height: 70%;
+    width: 100%;
+    height: 100%;
     border-top: 1px solid #D3D3D3;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 main > div > div {
@@ -23,8 +24,12 @@ main > div > div {
     align-items: center;
     margin-top: 1em;
     padding: 2em;
-    border: 2px solid;
-    width: 60%;
+    width: 40%;
+    background: #ffff;
+    height: 65%;
+    justify-content: space-evenly;
+    border-radius: 15px;
+    border: 3px solid #1434A4;
 }
 
 main > div > div > button {
@@ -39,25 +44,45 @@ main > div > div > button {
     font-family: 'Lucida Sans Unicode';
 }
 
-main > div > div > button:hover { 
+main > div > div > button:enabled:hover { 
     cursor: pointer;
     background-color: #FFBF00;
+}
+
+main > div > div > button:disabled { 
+    cursor: not-allowed;
 }
 
 main > div > div > h2 {
     margin-top: 0.5em;
 }
 
-main > div > div >  input {
+main > div > div > div >  input {
     font-size: 1.2em;
     text-align: center;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid #000000;
 }
+
+main > div > div > div >  label {
+    font-weight: bolder;
+    padding-left: 0.5em;
+    font-size: 0.8em;
+}
+
+main > div > div > div {
+    flex-direction: column;
+    display: flex;  
+}
+
 
 .error, .success {
     border-radius: 15px;
     color: #ffff;
     font-size: 1.2em;
     padding: 0.5em 1em;
+    text-align: center;
 }
 
 .error {
@@ -67,18 +92,19 @@ main > div > div >  input {
     background: #008000; 
 }
 
-.error > ul > li {
+ul > li {
     list-style-type: disc;
     margin-left: 1.5em;
 }
 
 .validation {
-    position: relative;
-    top: -1em;
+    color: #000000;
+    background-color: #ffffff;
 }
 
-.fa-spin {
+.fa-circle-notch {
     font-size: 3em;
+    animation: spinner 1.5s linear infinite;
 }
 
 .loading {
@@ -86,11 +112,25 @@ main > div > div >  input {
     flex-direction: column;
     align-items: center;
     gap: 0.5em;
+    text-align: center;
 }
 
 .loading > p  {
     font-size: 1em;
     font-family:  'Lucida Sans Unicode';
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    height: 20%;
+}
+
+@keyframes spinner {
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 

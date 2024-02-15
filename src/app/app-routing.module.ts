@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: 'general-vision', component: CompaniesListComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'charts', component: ChartsComponent},
-  {path: '', redirectTo: '/charts', pathMatch: 'full'}
+  {path: '', redirectTo: '/general-vision', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -1,30 +1,32 @@
 <main>
     <div>
         <div>
-            <h2>Digite o CPF/CNPJ do cliente que deseja cadastrar:</h2>
-            <input #inputField type="text">
-            <button *ngIf="!loading"
+            <div>
+                <label>CPF/CNPJ: </label>
+                <input #inputField type="text">
+            </div>
+            <button [disabled]="loading"
                 type="button" 
                 (click)="handleClick($event, inputField)">
                 SALVAR
             </button>
-            <div *ngIf="validationError" class="error validation">
+            <div *ngIf="!(postError || success || loading)" class="bottom validation">
                 <p>O texto deve conter:</p>
                 <ul>
-                    <li>Mínimio 1 e máximo 14 caracteres</li>
+                    <li>Máximo de 14 caracteres</li>
                     <li>Apenas números</li>
                 </ul>
             </div>
-            <div *ngIf="postError" class="error">
-                <p>Falha no cadastro, verifique se o cliente já existe. </p>
+            <div *ngIf="postError" class="bottom error">
+                <p>Falha no cadastro, verifique se <br> o cliente já existe. </p>
             </div>
-            <div *ngIf="success" class="success">
+            <div *ngIf="success" class="bottom success">
                 <p>Cliente cadastrado com sucesso!</p>
             </div>
-            <div *ngIf="loading" class="loading">
-                <p>Aguarde, o processo pode demorar alguns instantes...</p>
+            <div *ngIf="loading" class="bottom loading">
+                <p>Aguarde, o processo pode <br> demorar alguns instantes...</p>
                 <div>
-                    <i class="fas fa-sync fa-spin"></i>
+                    <i class="fa-solid fa-circle-notch"></i>
                 </div>
             </div>
         </div>
