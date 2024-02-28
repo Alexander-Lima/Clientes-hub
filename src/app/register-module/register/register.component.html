@@ -3,18 +3,20 @@
         <div>
             <div>
                 <label>CPF/CNPJ: </label>
-                <input #inputField type="text">
+                <input 
+                    #inputField type="text"
+                    (keypress)="handleKeydown($event, inputField)">
             </div>
             <button [disabled]="loading"
                 type="button" 
-                (click)="handleClick($event, inputField)">
+                (click)="handleClick(inputField)">
                 SALVAR
             </button>
             <div *ngIf="!(postError || success || loading)" class="bottom validation">
                 <p>O texto deve conter:</p>
                 <ul>
-                    <li>Máximo de 14 caracteres</li>
-                    <li>Apenas números</li>
+                    <li>Máximo de 14 caracteres;</li>
+                    <li>Apenas números.</li>
                 </ul>
             </div>
             <div *ngIf="postError" class="bottom error">

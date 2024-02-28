@@ -11,10 +11,19 @@ export class RegisterComponent {
   public postError: boolean = false;
   public success: boolean = false;
   public loading: boolean = false;
-
+  
   constructor(private registerService: RegisterService) {}
+  
+  handleClick(input: HTMLInputElement) {
+    this.sendData(input);
+  }
+  handleKeydown(event: KeyboardEvent, input: HTMLInputElement) {
+    if(event.key == 'Enter') {
+      this.sendData(input);
+    }
+  }
 
-  handleClick(event: MouseEvent, input: HTMLInputElement) {
+  private sendData(input: HTMLInputElement) {
     const isValid = this.checkValidity(input.value);
     this.hideAllWarnings();
     if(!isValid) {

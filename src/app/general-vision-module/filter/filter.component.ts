@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Company } from '../interfaces/company';
-import xlsx, { IContent } from 'json-as-xlsx';
 import { ExcelService } from '../services/excel.service';
 
 @Component({

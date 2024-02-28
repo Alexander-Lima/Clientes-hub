@@ -29,7 +29,7 @@ main > div > div {
     height: 65%;
     justify-content: space-evenly;
     border-radius: 15px;
-    border: 3px solid #1434A4;
+    box-shadow: 0px 0px 20px 2px #888888;
 }
 
 main > div > div > button {
@@ -37,10 +37,10 @@ main > div > div > button {
     color: #ffff;
     border: 2px solid transparent;
     border-radius: 15px;
-    font-family: auto;
     font-weight: bolder;
     font-size: 1em;
-    width: 10em;
+    width: fit-content;
+    padding: 0 1.5em;
     font-family: 'Lucida Sans Unicode';
 }
 
@@ -68,12 +68,14 @@ main > div > div > div >  input {
 main > div > div > div >  label {
     font-weight: bolder;
     padding-left: 0.5em;
-    font-size: 0.8em;
+    font-size: 1em;
 }
 
 main > div > div > div {
-    flex-direction: column;
-    display: flex;  
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;  
 }
 
 
@@ -122,9 +124,11 @@ ul > li {
 
 .bottom {
     display: flex;
+    flex-direction: column !important;
     justify-content: center;
     width: fit-content;
     height: 20%;
+    align-items: normal !important;
 }
 
 @keyframes spinner {
